@@ -1,32 +1,14 @@
 // import { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import clsx from "clsx";
+import { Route, Routes } from "react-router-dom";
 import css from "./App.module.css";
-// import { Home } from "../Home/Home";
-// import { Movies } from "../Movies/Movies";
-
-// const buildLinkClass = ({ isActive }) => {
-//   return clsx(css.link, isActive && css.active);
-// };
+import { NavBar } from "../NavBar/NavBar";
+import Home from "../../pages/Home/Home";
+import Movies from "../../pages/Movies/Movies";
 
 export const App = () => {
   return (
     <div>
-      <h1>The forst page</h1>
-      <nav className={css.nav}>
-        <Link
-          to="/"
-          className={css.link}
-        >
-          Home
-        </Link>
-        <Link
-          to="/movies"
-          className={css.link}
-        >
-          Movies
-        </Link>
-      </nav>
+      <NavBar />
 
       <Routes>
         <Route
@@ -39,7 +21,7 @@ export const App = () => {
         />
         <Route
           path="*"
-          element={<NotFound />}
+          element={<div>Not found page</div>}
         />
       </Routes>
     </div>
