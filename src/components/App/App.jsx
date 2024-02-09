@@ -4,6 +4,7 @@ import css from "./App.module.css";
 import { NavBar } from "../NavBar/NavBar";
 import Home from "../../pages/Home/Home";
 import Movies from "../../pages/Movies/Movies";
+import NotFound from "../../pages/NotFound/NotFound";
 
 export const App = () => {
   return (
@@ -21,7 +22,7 @@ export const App = () => {
         />
         <Route
           path="*"
-          element={<div>Not found page</div>}
+          element={<NotFound />}
         />
       </Routes>
     </div>

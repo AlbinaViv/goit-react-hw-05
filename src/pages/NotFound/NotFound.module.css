@@ -1,0 +1,8 @@
+.myIcon {
+}
+
+.wrap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
