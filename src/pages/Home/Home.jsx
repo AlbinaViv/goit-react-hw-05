@@ -1,30 +1,8 @@
-import { useEffect, useState } from "react";
-import { fetchPopular } from "../../services/movie.servisec";
 import { Link, useLocation } from "react-router-dom";
 import css from "./Home.module.css";
 
-export default function Home() {
-  const [movies, setMovies] = useState([]);
+export default function Home({ movies }) {
   const location = useLocation();
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchData() {
-      try {
-        const data = await fetchPopular({
-          signal: controller.signal,
-        });
-        setMovies((prevHome) => [...prevHome, ...data.results]);
-      } catch (error) {
-        alert("Oops, something's wrong!");
-      }
-    }
-    fetchData();
-    return () => {
-      controller.abort();
-    };
-  }, []);
 
   return (
     <div>
@@ -33,7 +11,6 @@ export default function Home() {
         <ul className={css.list}>
           {movies.map(({ id, title }) => (
             <li key={id}>
-              {" "}
               <Link
                 to={`/movies/${id}`}
                 state={{ from: location }}
