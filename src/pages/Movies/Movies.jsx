@@ -1,51 +1,57 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function Movies() {
-  const [movies, setMovies] = useState([]);
+export default function Movies() {}
+// const [movies, setMovies] = useState([]);
+// const [searchs, setSearchs] = useState([]);
 
-  useEffect(() => {
-    async function FetchData() {
-      try {
-        const response = await axios.gat(
-          "https://api.themoviedb.org/3/account/20977666"
-        );
-        setMovies(response.data);
-      } catch (error) {}
-    }
-    FetchData();
-  }, []);
+// const searchFilms = async (query) => {
+//   setQuery(query.value);
+// };
 
-  // useEffect(() => {
-  //   const url = "https://api.themoviedb.org/3/account/20977666";
+// useEffect(() => {
+//   async function FetchData() {
+//     try {
+//       const data = await fetchTrending(movies);
+//       setSearchs(data.results);
+//     } catch (error) {
+//       // console.error("This didn't work.");
+//       // throw error;
+//     }
+//   }
+//   FetchData();
+// }, [movies]);
 
-  //   const options = {
-  //     headers: {
-  //       Authorization: "Bearer a138309b07f4565abd84a04ed7875785",
-  //     },
-  //   };
+// useEffect(() => {
+//   const url = "https://api.themoviedb.org/3/account/20977666";
 
-  //   axios
-  //     .get(url, options)
-  //     .then((response) => setMovies(response.data))
-  //     .catch((err) => console.error(err));
-  // }, []);
+//   const options = {
+//     headers: {
+//       Authorization: "Bearer a138309b07f4565abd84a04ed7875785",
+//     },
+//   };
 
-  return (
-    <div>
-      <h2>Movies</h2>
-      {movies.length > 0 && (
-        <ul>
-          {movies.map((movies) => (
-            <li key={movies.id}>{movies.title}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
+//   axios
+//     .get(url, options)
+//     .then((response) => setMovies(response.data))
+//     .catch((err) => console.error(err));
+// }, []);
 
-// export default function Movies() {
+//   return (
+//     <div>
+//       <h2>Movies</h2>
+//       {searchs.length > 0 && (
+//         <ul>
+//           {searchs.map(({ id, title }) => (
+//             <li key={id}>{title}</li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
+
+// // export default function Movies() {
 //   const [movies, setMovies] = useState([]);
 
 //
