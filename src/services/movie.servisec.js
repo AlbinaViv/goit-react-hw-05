@@ -1,20 +1,54 @@
 import axios from "axios";
 
 const API_KEY = "a138309b07f4565abd84a04ed7875785";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 export const fetchPopular = async () => {
-  const url = "https://api.themoviedb.org/3/trending/movie/day?language=en-US";
-
   const options = {
     params: {
+      language: "en-US",
       api_key: API_KEY,
     },
   };
 
   try {
-    const response = await axios.get(url, options);
-    return response.data;
+    const { data } = await axios.get("/trending/movie/day", options);
+    return data;
   } catch (error) {
     alert("Oops, something's wrong!");
   }
 };
+
+export const getMovieDetailsPage = async (movieId) => {
+  const options = {
+    params: {
+      language: "en-US",
+      api_key: API_KEY,
+    },
+  };
+
+  try {
+    const { data } = await axios.get(`/movie/${movieId}`, options);
+    return data;
+  } catch (error) {
+    alert("Oops, something's wrong!");
+  }
+};
+
+export async function searchMovie(query) {
+  const options = {
+    params: {
+      language: "en-US",
+      api_key: API_KEY,
+      query,
+      page: 1,
+    },
+  };
+
+  try {
+    const { data } = await axios.get(`/search/movie`, options);
+    console.log(data.results);
+
+    return data.results;
+  } catch (error) {}
+}

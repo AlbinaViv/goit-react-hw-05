@@ -11,7 +11,7 @@ export const Loader = () => {
       ariaLabel="rotating-lines-loading"
       wrapperStyle={{}}
       wrapperClass=""
-      stroke="blue"
+      strokeColor="blue"
     />
   );
 };
