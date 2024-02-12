@@ -5,7 +5,6 @@ import { searchMovie } from "../../services/movie.servisec";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 export default function Movies() {
-  // const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("query") ?? "";
@@ -15,8 +14,12 @@ export default function Movies() {
 
   useEffect(() => {
     async function fetchData() {
-      const dataResults = await searchMovie(searchQuery);
-      setMovies(dataResults);
+      try {
+        const dataResults = await searchMovie(searchQuery);
+        setMovies(dataResults);
+      } catch (error) {
+        alert("Oops, something's wrong!");
+      }
     }
     fetchData();
   }, [searchQuery]);
