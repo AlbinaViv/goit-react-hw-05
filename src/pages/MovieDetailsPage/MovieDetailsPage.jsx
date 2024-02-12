@@ -31,6 +31,7 @@ export default function MovieDetailsPage() {
   return (
     <div className={css.details}>
       <button
+        className={css.btn}
         type="button"
         onClick={() => navigate(location?.state?.from ?? "/")}
       >
