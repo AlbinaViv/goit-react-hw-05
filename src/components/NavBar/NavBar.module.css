@@ -1,6 +1,15 @@
 .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 4px;
+  gap: 16px;
+  border-bottom: 1px solid violet;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  background-color: #242424;
 }
 
 .link {

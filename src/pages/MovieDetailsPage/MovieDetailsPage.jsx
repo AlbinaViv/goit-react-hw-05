@@ -1,5 +1,11 @@
 import { TiArrowBack } from "react-icons/ti";
-import { Link, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
 import { useEffect, useState } from "react";
 import { getMovieDetailsPage } from "../../services/movie.servisec";
@@ -7,6 +13,9 @@ import { getMovieDetailsPage } from "../../services/movie.servisec";
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movies, setMovies] = useState(null);
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -19,16 +28,18 @@ export default function MovieDetailsPage() {
     }
     fetchData();
   }, [movieId]);
-
   return (
-    <>
-      <Link to={`/`}>
+    <div className={css.details}>
+      <button
+        type="button"
+        onClick={() => navigate(location?.state?.from ?? "/")}
+      >
         <TiArrowBack
           className={css.myIcon}
           size="24"
         />
         Go back
-      </Link>
+      </button>
       {movies && (
         <div>
           <img
@@ -44,9 +55,17 @@ export default function MovieDetailsPage() {
           </p>
           <p>Overview {movies.overview}</p>
           <p>Genres: {movies.genres.map(({ name }) => name).join(", ")}</p>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
           <Outlet />
         </div>
       )}
-    </>
+    </div>
   );
 }

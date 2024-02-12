@@ -2,36 +2,37 @@ import { useEffect, useState } from "react";
 import css from "./Movies.module.css";
 import toast, { Toaster } from "react-hot-toast";
 import { searchMovie } from "../../services/movie.servisec";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 export default function Movies() {
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("query") ?? "";
 
   const notify = () => toast.error("Please, enter key word!");
   const location = useLocation();
 
   useEffect(() => {
     async function fetchData() {
-      const dataResults = await searchMovie(search);
+      const dataResults = await searchMovie(searchQuery);
       setMovies(dataResults);
     }
     fetchData();
-  }, [search]);
+  }, [searchQuery]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setSearch(e.target.elements.query.value);
-    // console.log(e.target.elements.query.value);
-    // console.log(movies);
-
-    if (!search) {
+    const { value } = e.target.elements.query;
+    setSearchParams({ query: value });
+    if (!value) {
       notify();
+      return;
     }
-    e.target.reset();
+    // e.target.form.reset();
   };
   return (
-    <>
+    <div className={css.movies}>
       <Toaster />
       <form
         className={css.form}
@@ -57,6 +58,6 @@ export default function Movies() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

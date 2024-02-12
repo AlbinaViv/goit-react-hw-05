@@ -6,3 +6,6 @@
   gap: 16px;
   align-items: center;
 }
+.notFound {
+  padding-top: 60px;
+}

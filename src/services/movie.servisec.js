@@ -52,3 +52,39 @@ export async function searchMovie(query) {
     return data.results;
   } catch (error) {}
 }
+
+export async function getMovieCast(movieId) {
+  const options = {
+    params: {
+      language: "en-US",
+      api_key: API_KEY,
+      page: 1,
+    },
+  };
+
+  try {
+    const {
+      data: { cast },
+    } = await axios.get(`movie/${movieId}/credits`, options);
+
+    return cast;
+  } catch (error) {}
+}
+
+export async function getMovieReviews(movieId) {
+  const options = {
+    params: {
+      language: "en-US",
+      api_key: API_KEY,
+      page: 1,
+    },
+  };
+
+  try {
+    const {
+      data: { results },
+    } = await axios.get(`movie/${movieId}/reviews`, options);
+
+    return results;
+  } catch (error) {}
+}
