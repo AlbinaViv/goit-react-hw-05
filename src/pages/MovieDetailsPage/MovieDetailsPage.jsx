@@ -7,8 +7,9 @@ import {
   useParams,
 } from "react-router-dom";
 import css from "./MovieDetailsPage.module.css";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { getMovieDetailsPage } from "../../services/movie.servisec";
+import { Loader } from "../../components/Loader/Loader";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -64,7 +65,9 @@ export default function MovieDetailsPage() {
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       )}
     </div>
