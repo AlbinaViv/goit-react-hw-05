@@ -18,7 +18,7 @@ export default function MovieCast() {
     }
     fetchData();
   }, [movieId]);
-  console.log(cast);
+  // console.log(cast);
   return (
     <ul className={css.list}>
       {cast.map(({ id, name, character, profile_path }) => (

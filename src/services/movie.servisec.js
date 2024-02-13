@@ -47,7 +47,7 @@ export async function searchMovie(query) {
 
   try {
     const { data } = await axios.get(`/search/movie`, options);
-    console.log(data.results);
+    // console.log(data.results);
 
     return data.results;
   } catch (error) {}
